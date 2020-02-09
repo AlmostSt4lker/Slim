@@ -19,7 +19,7 @@ return function (App $app) {
 
     $app->get('/after/{name}', function (RequestInterface $request,ResponseInterface $response, $args) {
         $name = $args['name'];
-        $response->getBody()->write("Hello, $name");
+        $response->getBody()->write("Hello there, $name");
         return $response;
     });
             // Add routes that actually use twig
