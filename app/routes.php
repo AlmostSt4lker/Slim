@@ -32,23 +32,23 @@ return function (App $app) {
         });
 
 
-        $view->get('/example',function($request, $response){
-            $view ='example.twig';
-            return $this->get('view')->render($response, $view);
+        $view->get('/podstrona2',function($request, $response){
+            $view ='test2.twig';
+            $nick = $_POST['nick'];
+            return $this->get('view')->render($response, $view, ['post' => $_POST]);
         });
 
 
-        $view->get('/twig/{name}/{work}', function ($request, $response, $args){
+        $view->get('/podstrona1', function ($request, $response, $args){
             $loader = new FilesystemLoader(__DIR__.'/../src/Views');
-            $twig = new Environment($loader);
             $view = 'test.twig';
-            $name = $args['name'];
-            $occupation = $args['work'];
 
-            return $this->get('view')->render($response, $view, ['name' => $name, 'occupation' => $occupation]);         // ['name' => $name] = compact('name')
+            return $this->get('view')->render($response, $view);         // ['name' => $name] = compact('name')
 
 
     });
+
+
 
         $view->get('/mvc', function ($request, $response){
 
