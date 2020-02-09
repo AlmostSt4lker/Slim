@@ -13,7 +13,7 @@ return function (App $app) {
 
     $app->get('/hello/{name}', function (RequestInterface $request,ResponseInterface $response, $args) {
         $name = $args['name'];
-        $response->getBody()->write("Hello, $name");
+        $response->getBody()->write("Hello world!, $name");
         return $response;
     });
 
