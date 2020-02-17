@@ -34,8 +34,7 @@ return function (App $app) {
 
         $view->get('/podstrona2',function($request, $response){
             $view ='test2.twig';
-            $nick = $_POST['nick'];
-            return $this->get('view')->render($response, $view, ['post' => $_POST]);
+            return $this->get('view')->render($response, $view);
         });
 
 
@@ -43,7 +42,14 @@ return function (App $app) {
             $loader = new FilesystemLoader(__DIR__.'/../src/Views');
             $view = 'test.twig';
 
-            return $this->get('view')->render($response, $view);         // ['name' => $name] = compact('name')
+            include_once '../app/classes/db.php';
+            include_once '../app/classes/model.php';
+            include_once '../app/classes/view.php';
+            $uid = 'Adam';
+            $user = new View();
+            $name = $user->readUsers($uid);
+
+            return $this->get('view')->render($response, $view, compact('name'));         // ['name' => $name] = compact('name')
 
 
     });

@@ -4,9 +4,9 @@
 class View extends model
 {
 
-    public function readUsers(){
-        $results = $this->getNames();
-        return (string)$results;
+    public function readUsers($uid){
+        $results = $this->getNames($uid);
+        return $results[0]['uid'];
     }
 
 }

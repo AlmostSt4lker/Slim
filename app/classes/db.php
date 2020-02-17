@@ -5,7 +5,7 @@ class Db
 {
     private $host='localhost';
     private $user='root';
-    private $password='password';
+    private $password='';
     private $dbname='mvctwig';
 
     protected function connect(){
