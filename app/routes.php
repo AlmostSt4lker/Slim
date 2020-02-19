@@ -34,8 +34,7 @@ return function (App $app) {
 
         $view->get('/podstrona2',function($request, $response){
             $view ='test2.twig';
-            $nick = $_POST['nick'];
-            return $this->get('view')->render($response, $view, ['post' => $_POST]);
+            return $this->get('view')->render($response, $view);
         });
 
 

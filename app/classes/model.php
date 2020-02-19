@@ -6,10 +6,16 @@ class Model extends Db
 {
     public function getNames(){
 
-        $results = array (
-            'name' => 'Adam',
-        );
+        $sql = "SELECT * FROM users WHERE email LIKE ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute('Adam');
 
-        return $results['name'];
+        $results = $stmt->fetchAll();
+        return $results;
+
+//        $results = array (
+//            'name' => 'Adam',
+//        );
+
     }
 }
