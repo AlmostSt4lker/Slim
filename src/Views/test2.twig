@@ -11,14 +11,18 @@
 
 <h1>Produkty </h1><br>
 
-<h2>{{ item_name }}</h2><br>
-Dostępnych sztuk: {{ item_stock }}<br>
-Cena: {{ item_price }} zł.<br>
-Item test: {{ item_test[1] }} <br>
 
-{% for value in item_test %}
-    {{value}} <br>
-{% endfor %}
+    {% for values in arr %}
+
+        <h2>{{values['product_name']}}</h2> <br>
+        Dostępnych sztuk: {{values['product_stock']}}<br>
+        Cena: {{values['product_price']}} zł.<br>
+
+    {% endfor %}
+
+
+<br>
+
 
 
 

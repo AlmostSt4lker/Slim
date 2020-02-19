@@ -32,21 +32,6 @@ return function (App $app) {
         });
 
 
-        $view->get('/podstrona2',function($request, $response){
-        include 'autoinclude.php';
-
-            $view ='test2.twig';
-
-            $item = new View();
-            $item_name = $item->readItemName();
-            $item_stock = $item->readItemStock();
-            $item_price = $item->readItemPrice();
-            $item_test = $item->readItemTest();
-
-
-        return $this->get('view')->render($response, $view, compact('item_name', 'item_stock', 'item_price', 'item_test'));
-    });
-
 
     $view->get('/podstrona1', function ($request, $response, $args){
         $loader = new FilesystemLoader(__DIR__.'/../src/Views');
@@ -67,7 +52,31 @@ return function (App $app) {
 
 
 
-    $view->get('/mvc', function ($request, $response){
+        $view->get('/podstrona2',function($request, $response){
+            include 'autoinclude.php';
+
+            $view ='test2.twig';
+
+            $item = new View();
+            $item_name = $item->readItemName();
+            $item_stock = $item->readItemStock();
+            $item_price = $item->readItemPrice();
+            $item_test = $item->readItemTest();
+
+            $integer = 0;
+            foreach($item_test as $value){
+                $integer++;
+                $arr[$integer] = $value;
+            }
+
+
+            return $this->get('view')->render($response, $view, compact('item_name', 'item_stock', 'item_price', 'arr'));
+        });
+
+
+
+
+        $view->get('/mvc', function ($request, $response){
 
         include 'autoinclude.php';
 
@@ -75,7 +84,15 @@ return function (App $app) {
         $twig = new Environment($loader);
         $view = 'mvc.twig';
 
-        $arr = array(1, 2);
+        $item = new View();
+        $item_test = $item->readItemTest();
+
+        $integer = 0;
+        foreach($item_test as $value){
+            $integer++;
+            $arr[$integer] = $value;
+        }
+
 
         return $this->get('view')->render($response, $view, ['array' => $arr]);
 

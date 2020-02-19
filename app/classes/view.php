@@ -46,7 +46,6 @@ class View extends model
         foreach($arr as $value){
             $integer++;
             $arr[$integer] = $value;
-            echo $arr[$integer]['product_name']."--- test ";
         }
         return $arr;
     }
