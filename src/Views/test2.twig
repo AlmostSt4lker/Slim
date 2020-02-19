@@ -9,7 +9,20 @@
 
 <body>
 
-<h1>Podstrona numer 2 </h1><br>
+<h1>Produkty </h1><br>
+
+<h2>{{ item_name }}</h2><br>
+Dostępnych sztuk: {{ item_stock }}<br>
+Cena: {{ item_price }} zł.<br>
+Item test: {{ item_test[1] }} <br>
+
+{% for value in item_test %}
+    {{value}} <br>
+{% endfor %}
+
+
+
+<br><br>
 aby powrócić kliknij <a href="/">TUTAJ</a>
 
 

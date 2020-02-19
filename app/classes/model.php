@@ -14,4 +14,34 @@ class Model extends Db
 
         return $results;
     }
+
+    // Products
+
+    protected function getItems(){
+        $sql = "SELECT * FROM products";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+
+        $resultsItems = $stmt->fetchAll();
+
+        return $resultsItems;
+    }
+
+    protected function getItemsTest(){
+        $sql = "SELECT * FROM products";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+
+        $resultsItems = $stmt->fetchAll();
+
+        $amountOfResults = $stmt->rowCount();
+        $integer = 0;
+        $array = array();
+            foreach($resultsItems as $value){
+                $integer++;
+                $array[$integer] = $value;
+            }
+        return $array;
+    }
+
 }

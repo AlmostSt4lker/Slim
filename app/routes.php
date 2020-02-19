@@ -33,8 +33,18 @@ return function (App $app) {
 
 
         $view->get('/podstrona2',function($request, $response){
-        $view ='test2.twig';
-        return $this->get('view')->render($response, $view);
+        include 'autoinclude.php';
+
+            $view ='test2.twig';
+
+            $item = new View();
+            $item_name = $item->readItemName();
+            $item_stock = $item->readItemStock();
+            $item_price = $item->readItemPrice();
+            $item_test = $item->readItemTest();
+
+
+        return $this->get('view')->render($response, $view, compact('item_name', 'item_stock', 'item_price', 'item_test'));
     });
 
 
@@ -42,14 +52,15 @@ return function (App $app) {
         $loader = new FilesystemLoader(__DIR__.'/../src/Views');
         $view = 'test.twig';
 
-        include_once '../app/classes/db.php';
-        include_once '../app/classes/model.php';
-        include_once '../app/classes/view.php';
+        include 'autoinclude.php';
+
         $uid = 'Adam';
         $user = new View();
-        $name = $user->readUsers($uid);
+        $name = $user->readUserId($uid);
+        $email = $user->readUserEmail($uid);
 
-        return $this->get('view')->render($response, $view, compact('name'));         // ['name' => $name] = compact('name')
+
+        return $this->get('view')->render($response, $view, compact('name', 'email'));         // ['name' => $name] = compact('name')
 
 
     });
@@ -64,11 +75,9 @@ return function (App $app) {
         $twig = new Environment($loader);
         $view = 'mvc.twig';
 
-        $viewer = new View();
-        $results = $viewer->readUsers();
+        $arr = array(1, 2);
 
-
-        return $this->get('view')->render($response, $view, ['name' => $results]);
+        return $this->get('view')->render($response, $view, ['array' => $arr]);
 
 
     });
