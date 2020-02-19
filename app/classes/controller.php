@@ -2,8 +2,3 @@
 
 
 
-
-$sql = "SELECT * FROM `users`";
-
-
-

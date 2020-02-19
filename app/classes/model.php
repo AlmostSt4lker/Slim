@@ -4,18 +4,14 @@ use Slim\App;
 
 class Model extends Db
 {
-    public function getNames(){
 
-        $sql = "SELECT * FROM users WHERE email LIKE ?";
+    protected function getNames($uid){
+        $sql = "SELECT * FROM users WHERE uid LIKE ?";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute('Adam');
+        $stmt->execute([$uid]);
 
         $results = $stmt->fetchAll();
+
         return $results;
-
-//        $results = array (
-//            'name' => 'Adam',
-//        );
-
     }
 }

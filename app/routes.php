@@ -13,59 +13,65 @@ return function (App $app) {
 
 
     $app->get('/after/{name}', function (RequestInterface $request,ResponseInterface $response, $args) {
-        $name = $args['name'];
-        $response->getBody()->write("Hello there, $name");
-        return $response;
+    $name = $args['name'];
+    $response->getBody()->write("Hello there, $name");
+    return $response;
     });
-            // Add routes that actually use twig
+    // Add routes that actually use twig
 
     $container = $app->getContainer();
 
 
-    // Add app group
+// Add app group
 
     $app->group('', function (RouteCollectorProxy $view){
 
         $view->get('/',function($request, $response){
-            $view ='index.twig';
-            return $this->get('view')->render($response, $view);
+        $view ='index.twig';
+        return $this->get('view')->render($response, $view);
         });
 
 
         $view->get('/podstrona2',function($request, $response){
-            $view ='test2.twig';
-            return $this->get('view')->render($response, $view);
-        });
+        $view ='test2.twig';
+        return $this->get('view')->render($response, $view);
+    });
 
 
-        $view->get('/podstrona1', function ($request, $response, $args){
-            $loader = new FilesystemLoader(__DIR__.'/../src/Views');
-            $view = 'test.twig';
+    $view->get('/podstrona1', function ($request, $response, $args){
+        $loader = new FilesystemLoader(__DIR__.'/../src/Views');
+        $view = 'test.twig';
 
-            return $this->get('view')->render($response, $view);         // ['name' => $name] = compact('name')
+        include_once '../app/classes/db.php';
+        include_once '../app/classes/model.php';
+        include_once '../app/classes/view.php';
+        $uid = 'Adam';
+        $user = new View();
+        $name = $user->readUsers($uid);
+
+        return $this->get('view')->render($response, $view, compact('name'));         // ['name' => $name] = compact('name')
 
 
     });
 
 
 
-        $view->get('/mvc', function ($request, $response){
+    $view->get('/mvc', function ($request, $response){
 
-            include 'autoinclude.php';
+        include 'autoinclude.php';
 
-            $loader = new FilesystemLoader(__DIR__.'/../src/Views');
-            $twig = new Environment($loader);
-            $view = 'mvc.twig';
+        $loader = new FilesystemLoader(__DIR__.'/../src/Views');
+        $twig = new Environment($loader);
+        $view = 'mvc.twig';
 
-            $viewer = new View();
-            $results = $viewer->readUsers();
-
-
-            return $this->get('view')->render($response, $view, ['name' => $results]);
+        $viewer = new View();
+        $results = $viewer->readUsers();
 
 
-        });
+        return $this->get('view')->render($response, $view, ['name' => $results]);
+
+
+    });
 
 });
 };
-
