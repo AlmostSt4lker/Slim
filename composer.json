@@ -43,7 +43,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app"
+            "App\\": "app",
+            "CreateUserCommand\\": "/src/Commands/CreateUserCommand"
         }
     },
     "autoload-dev": {

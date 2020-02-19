@@ -69,7 +69,6 @@ return function (App $app) {
                 $arr[$integer] = $value;
             }
 
-
             return $this->get('view')->render($response, $view, compact('item_name', 'item_stock', 'item_price', 'arr'));
         });
 

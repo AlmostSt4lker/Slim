@@ -44,4 +44,22 @@ class Model extends Db
         return $array;
     }
 
+    // CONTROLLER USE
+
+    protected function setUser($uid, $email, $password){
+        $sql = "INSERT INTO users(uid, email, password) VALUES (?, ?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$uid, $email, $password]);
+
+        $resultsItems = $stmt->fetchAll();
+
+        return $resultsItems;
+    }
+
+    protected function setItem($name, $stock, $price){
+        $sql = "INSERT INTO products(product_name, product_stock, product_price) VALUES (?, ?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$name, $stock, $price]);
+       }
+
 }

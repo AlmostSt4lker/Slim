@@ -9,17 +9,17 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
-class CreateUserCommand extends Command
+
+class CreateItemCommand extends Command
 {
 
     protected function configure()
     {
-        $this
-        ->setName('app:createUser')
-        ->setDescription('Create user in database')
-        ->addArgument('uid', InputArgument::REQUIRED, 'Username of new user')
-        ->addArgument('password', InputArgument::REQUIRED, 'Password of new user')
-        ->addArgument('email', InputArgument::REQUIRED, 'Email new user');
+        $this->setName('app:createItem');
+        $this->setDescription('Create item in database (<name> <stock> <price>)')
+        ->addArgument('name', InputArgument::REQUIRED, 'Name of new item')
+        ->addArgument('stock', InputArgument::REQUIRED, 'Amount of new item')
+        ->addArgument('price', InputArgument::REQUIRED, 'Price of new item');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -28,7 +28,7 @@ class CreateUserCommand extends Command
 
 
         $test = new Controller();
-        $test->insertUser($input->getArgument('uid'), $input->getArgument('email'), $input->getArgument('password'));
+        $test->insertItem($input->getArgument('name'), $input->getArgument('stock'), $input->getArgument('price'));
 
         return 0;
     }
