@@ -62,4 +62,26 @@ class Model extends Db
         $stmt->execute([$name, $stock, $price]);
        }
 
+    protected function changeItem($name, $change, $value){
+
+        if ($change == "product_stock") {
+
+            $sql = "UPDATE `products` SET `product_stock` = ? WHERE `products`.`product_name` = ?;";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$value, $name]);
+        }
+        if ($change == "product_price"){
+
+            $sql = "UPDATE `products` SET `product_price` = ? WHERE `products`.`product_name` = ?;";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$value, $name]);
+        }
+        if ($change == "product_name"){
+
+            $sql = "UPDATE `products` SET `product_name` = ? WHERE `products`.`product_name` = ?;";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$value, $name]);
+        }
+    }
+
 }

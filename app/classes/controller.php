@@ -16,5 +16,10 @@ class Controller extends model
         $this->setItem($name, $stock, $price);
     }
 
+    public function updateItem($name, $change, $value)
+    {
+        $this->changeItem($name, $change, $value);
+    }
+
 
 }
