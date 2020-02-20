@@ -19,13 +19,13 @@ class UpdateItemCommand extends Command
         $this->setDescription('Update item in database (<name> or <stock> or <price>)')
         ->addArgument('name', InputArgument::REQUIRED, 'What item? ')
         ->addArgument('change', InputArgument::REQUIRED, 'What to change?')
-        ->addArgument('value', InputArgument::REQUIRED, 'New value? ');
+        ->addArgument('value', InputArgument::REQUIRED, 'New value? ')
+        ->setHelp('Type app:updateItem <nameOfItemInDatabase> <column name> <new value> to update information about item in database');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         include "autoinclude.php";
-
 
         $test = new Controller();
         $test->updateItem($input->getArgument('name'), $input->getArgument('change'), $input->getArgument('value'));

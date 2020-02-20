@@ -21,5 +21,8 @@ class Controller extends model
         $this->changeItem($name, $change, $value);
     }
 
+    public function capitalize($name){
+        return strtoupper($name);
+    }
 
 }

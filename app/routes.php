@@ -44,8 +44,11 @@ return function (App $app) {
         $name = $user->readUserId($uid);
         $email = $user->readUserEmail($uid);
 
+        $capitalize = new Controller();
+        $nameToPass = $capitalize->capitalize($name);
 
-        return $this->get('view')->render($response, $view, compact('name', 'email'));         // ['name' => $name] = compact('name')
+
+        return $this->get('view')->render($response, $view, compact('nameToPass', 'email'));         // ['name' => $name] = compact('name')
 
 
     });
