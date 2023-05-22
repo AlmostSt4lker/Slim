@@ -29,7 +29,7 @@
         "monolog/monolog": "^1.24",
         "php-di/php-di": "^6.0",
         "slim/pdo": "^1.10",
-        "slim/psr7": "^0.5",
+        "slim/psr7": "^1.4",
         "slim/slim": "^4.0",
         "slim/twig-view": "^3.0",
         "symfony/console": "^5.0",
